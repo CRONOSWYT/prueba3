@@ -1,6 +1,6 @@
 {
   "name": "Smart Test (PHP + MySQL)",
-  "dockerComposeFile": [".devcontainer/docker-compose.yml"],
+  "dockerComposeFile": ["docker-compose.yml"],
   "service": "app",
   "workspaceFolder": "/var/www/html",
   "shutdownAction": "none",
