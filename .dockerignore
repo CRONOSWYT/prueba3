@@ -1,15 +1,32 @@
+# Repositorio y control de versiones
 .git
 .gitignore
-node_modules
-docs
-markdown
-sql
-*.md
+
+# Entornos (mantén .env.example, excluye los que contienen secretos)
 .env
-.env.*
+.env.production
+.env.staging
+
+# Configuración de desarrollo / Codespaces (no se sirve en producción)
+.devcontainer/
+
+# Dependencias y builds
+node_modules/
+vendor/
+*.zip
+*.tar.gz
+
+# Logs
 *.log
-docker-compose*.yml
+logs/
+
+# Metadatos de SO
 .DS_Store
+Thumbs.db
+
+# Tests
 **/test_*
 **/test*.php
-php/test_conexion.php
+
+# Documentación (no se sirve en el contenedor)
+*.md
