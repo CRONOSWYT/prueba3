@@ -1,0 +1,161 @@
+/* ============================================
+   LOGIN PAGE - Layout centrado con formulario
+   ============================================ */
+body {
+    background-color: #F3F4F6;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#contenido {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================
+   TOGGLE DE IDIOMA (Language switch)
+   ============================================ */
+.switch-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+}
+
+/* ============================================
+   TÍTULOS
+   ============================================ */
+h2 {
+    text-align: center;
+    color: #0F172A;
+    font-style: italic;
+    outline: none;
+}
+
+/* ============================================
+   INPUTS
+   ============================================ */
+input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #1E3A8A;
+    font-style: italic;
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+    color: #4B5563;
+    opacity: 1;
+}
+
+div {
+    text-align: center;
+    color: #0F172A;
+    cursor: pointer;
+    padding-top: 15px;
+}
+
+label {
+    color: #0F172A;
+    text-align: center;
+}
+
+select {
+    width: 95%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #1E3A8A;
+    font-style: italic;
+    outline: none;
+}
+
+select option {
+    color: #111827;
+    background: #FFFFFF;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: rgba(1, 45, 85);
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color:  rgb(0, 105, 90);
+}
+
+
+form {
+    width: 340px;
+    max-width: calc(100vw - 32px);
+    padding: 40px;
+    background: rgba(229, 231, 235, 0.548);
+    background-size: 80px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.5);
+    padding-top: 10px;
+}   
+
+.logo-circular {
+    width: 90px; 
+    height: 90px;
+    object-fit: cover; 
+    border-radius: 50%;
+    border: 4px solid rgba(0, 186, 158); 
+    box-shadow: 0 4px 12px rgba(0, 186, 158, 0.726);
+    margin-bottom: 5px;
+}
+
+.link {
+    color: #1e3a8a; 
+    cursor: pointer; 
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: center;
+    transition: color 0.3s; 
+}
+
+.link:hover {
+    color: #3b82f6; 
+    text-decoration: underline; 
+}
+
+.link-recuperar {
+    color: #1e3a8a;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: right;
+    width: 95%;
+    margin: 5px auto 15px auto;
+    transition: color 0.3s;
+}
+
+.link-recuperar:hover {
+    color: #3b82f6; 
+    text-decoration: underline; 
+}

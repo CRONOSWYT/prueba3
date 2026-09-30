@@ -1,0 +1,312 @@
+/* ============================================
+   VARIABLES DE COLOR
+   ============================================ */
+:root {
+    --bg-main: #071626;
+    --accent-teal: #1bb3a7;
+    --header-teal: #23afaa;
+    --text-dark: #38bdf8;
+    --text-body: #e2e8f0;
+    --card-white: #0f2338;
+    --btn-dark: #012d55;
+}
+
+/* ============================================
+   RECETAS BASE
+   ============================================ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    max-width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-header {
+    background-color: var(--bg-main);
+    text-align: center;
+    padding: 3rem 1rem 1.5rem 1rem;
+    position: relative;
+}
+
+.legal-auth {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 900px;
+    margin: 0 auto 1rem;
+}
+
+.legal-header h1 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.legal-header p {
+    font-size: 1rem;
+    color: var(--text-body);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem 1.5rem;
+}
+
+.meta-bar {
+    padding-bottom: 0.75rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-body);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.meta-bar .badge {
+    color: var(--accent-teal);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.35rem;
+    color: var(--text-dark);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(27, 179, 167, 0.25);
+    padding-bottom: 0.3rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    color: var(--accent-teal);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+p {
+    margin: 0 0 1.2rem 0;
+    text-align: justify;
+    color: var(--text-body);
+    font-size: 0.95rem;
+}
+
+ul, ol {
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.6rem;
+    color: var(--text-body);
+    font-size: 0.95rem;
+}
+
+strong {
+    color: var(--text-dark);
+}
+
+.highlight {
+    color: var(--accent-teal);
+    font-weight: 600;
+}
+
+.link {
+    background-color: var(--btn-dark);
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 1px solid rgba(27, 179, 167, 0.3);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.link:hover {
+    background-color: var(--accent-teal);
+    color: #071626;
+}
+
+footer {
+    margin-top: auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: var(--btn-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+footer h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-teal);
+    text-decoration: underline;
+}
+
+@media (max-width: 650px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+    }
+    .legal-header h1 {
+        font-size: 1.7rem;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+.switch-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 30px;
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+  user-select: none;
+}
+
+.switch input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  cursor: pointer;
+  margin: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  border: 1px solid #0b3556;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(11, 53, 86, 0.12);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.switch:hover .slider {
+  background-color: #f0f7f7;
+  border-color: #14b8a8;
+  box-shadow: 0 4px 12px rgba(11, 53, 86, 0.2);
+}
+
+.slider .text-es,
+.slider .text-en {
+  color: rgba(11, 53, 86, 0.35);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.slider .thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background-color: #0b3556;
+  border-radius: 50%;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider .thumb::after {
+  content: "ES";
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+}
+
+.switch input:checked + .slider .thumb {
+  transform: translateX(32px);
+  background-color: #14b8a8;
+}
+
+.switch input:checked + .slider .thumb::after {
+  content: "EN";
+  color: #ffffff;
+}

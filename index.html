@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+    <head>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SMART TEST  - Página de Inicio</title>
+        <link rel="stylesheet" href="css/pagina.css" />
+        <link rel="stylesheet" href="css/index.css" fetchpriority="high" />
+        <link rel="stylesheet" href="css/sweet-alerts.css" />
+        <link rel="stylesheet" href="css/widget.css" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="js/auth.js" defer></script>
+        <script src="js/index.js" defer fetchpriority="high"></script>
+        <link rel="icon" href="img/LOGO_SMART_TEST.png">
+    </head>
+    <body>
+        <!--cambio de idioma-->
+        <div class="switch-container">
+            <div class="switch">
+                <input
+                    type="checkbox"
+                    id="idiomaToggle"
+                    onchange="alternarIdioma()"
+                />
+                <div class="slider round">
+                    <span class="text-es">ES</span>
+                    <span class="text-en">EN</span>
+                    <span class="thumb"></span>
+                </div>
+            </div>
+        </div>
+        <div id="srtCog" class="srt-cog" aria-label="Opciones">
+          <button type="button" id="srtCogBtn" class="srt-cog-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleCogWidget()">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+          </button>
+          <div id="srtCogMenu" class="srt-menu" role="menu"></div>
+        </div>
+        <!-- muestra el contenido según el idioma seleccionado; por defecto español -->
+        <div id="contenido"></div>
+    </body>
+</html>

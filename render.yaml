@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: smart-test
+    env: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DB_HOST
+        value: smarttest-smartest.c.aivencloud.com
+      - key: DB_PORT
+        value: "20038"
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_USER
+        value: avnadmin
+      # Set DB_PASSWORD in the Render.com dashboard as a secret/env var.
+      # It is NOT hardcoded here for security reasons.
+      - key: DB_PASSWORD
+        sync: false

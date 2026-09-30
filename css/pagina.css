@@ -1,0 +1,568 @@
+/* ============================================
+   VARIABLES Y RECETAS BASE
+   ============================================ */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+
+/* Reset básico y box-sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables de color y diseño */
+:root {
+    --primary: #1bb3a7;
+    --dark: #0b3556;
+    --darker: #15466d;
+    --teal: #14b8a8;
+    --light-bg: #f4f7f6;
+    --bg: #f4f7f6;
+    --card: #ffffff;
+    --border: #dfe9e6;
+    --text: #333333;
+    --text-muted: #4b5563;
+    --bg-light: #f4f7f9;
+    --gold: #f59e0b;
+    --silver: #94a3b8;
+    --bronze: #d97706;
+    --edit-color: #1bb3a7;
+    --delete-color: #e74c3c;
+}
+
+.centro { text-align: center; }
+.hidden { display: none !important; }
+
+/* ============================================
+   HEADER (Barra superior con logo y botones)
+   ============================================ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text);
+    max-width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #1bb3a7;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 12px 24px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header .header-buttons,
+.header .buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.logo-circular {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.logo-circular:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.726);
+}
+
+.left h2 {
+    font-size: 1.1rem;
+    color: #0b3556;
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    padding: 10px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #0b3556;
+    color: #ffffff;
+    border: 1px solid #0b3556;
+}
+
+.btn-primary:hover {
+    background-color: #15466d;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: white;
+    color: #0b3556;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+/* ============================================
+   TARJETAS / CARDS DE CONTENIDO
+   ============================================ */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 400px));
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 24px;
+    width: 100%;
+}
+
+.card {
+    display: block;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px; /* Fixed padding replaces 10% for consistent card sizing */
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    text-decoration: none;
+    color: inherit;
+}
+
+.card img {
+    width: 115px;
+    height: 115px;
+    object-fit: contain;
+    background-color: #ffffff;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.card h3 {
+    margin: 18px 0 0;
+    color: #0b3556;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   PÁGINA DE MATERIA (Subject page)
+   ============================================ */
+.subject-page {
+    padding: 60px 24px; /* Fixed padding replaces 8% for large screen consistency */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.subject-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    text-align: center;
+}
+
+.subject-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 24px;
+}
+
+.subject-card h1 {
+    margin: 0 0 18px;
+    font-size: 2rem;
+    color: #0b3556;
+}
+
+/* ============================================
+   WELCOME MESSAGE (Bienvenido)
+   ============================================ */
+.welcome {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+}
+
+.subject-card p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.subject-card .btn {
+    min-width: 180px;
+}
+
+/* ============================================
+   HOVER ANIMACIONES EN CARDS
+   ============================================ */
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    background-color: #fdfdfd;
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE (< 768px)
+   ============================================ */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header-buttons,
+    .header .buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .cards {
+        padding: 30px 5%;
+        gap: 20px;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   RESPONSIVE: PANTALLAS GRANDES (> 1440px)
+   Mantiene el contenido centrado y proporcional
+   ============================================ */
+@media (min-width: 1440px) {
+    .header { padding: 12px 24px; }
+    .cards { padding: 60px 24px; }
+    .subject-page { padding: 60px 24px; }
+}
+
+footer {
+    margin-top: auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #012d55;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+footer h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #1bb3a7;
+    text-decoration: underline;
+}
+
+.switch-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+}
+
+.switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 30px;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+    user-select: none;
+}
+
+.switch input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    cursor: pointer;
+    margin: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    border: 1px solid #0b3556;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(11, 53, 86, 0.12);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.switch:hover .slider {
+    background-color: #f0f7f7;
+    border-color: #14b8a8;
+    box-shadow: 0 4px 12px rgba(11, 53, 86, 0.2);
+}
+
+.slider .text-es,
+.slider .text-en {
+    color: rgba(11, 53, 86, 0.35);
+    font-size: 10px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.slider .thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    background-color: #0b3556;
+    border-radius: 50%;
+    transition:
+        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider .thumb::after {
+    content: "ES";
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+}
+
+.switch input:checked + .slider .thumb {
+    transform: translateX(32px);
+    background-color: #14b8a8;
+}
+
+.switch input:checked + .slider .thumb::after {
+    content: "EN";
+    color: #ffffff;
+}
+
+/* ============================================================
+   AVATARES DE USUARIO
+   - foto por URL (con onerror → iniciales)
+   - iniciales con color de la paleta (fallback global)
+   ============================================================ */
+.avatar-inicial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+/* Tamaños por contexto (el .user-avatar de la tabla vive en ranking.css) */
+.welcome-avatar {
+    width: 34px;
+    height: 34px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.ranking-preview-avatar {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+/* ============================================================
+   MODAL DE CONFIGURACIÓN (widget auth.js)
+   ============================================================ */
+.cfg-form {
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 24px;
+    align-items: start;
+}
+
+.cfg-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cfg-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cfg-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--darker);
+    margin: 0 0 6px;
+}
+
+/* Inputs coherentes con el tema (sobreescriben swal2-input) */
+.swal2-input.cfg-input {
+    width: 100%;
+    padding: 9px 11px;
+    font-size: 0.88rem;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.swal2-input.cfg-input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(20, 184, 168, 0.2);
+    outline: none;
+    background: var(--card);
+}
+
+.swal2-input.cfg-input::placeholder {
+    color: var(--text-muted);
+}
+
+.cfg-avatar-preview {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.cfg-preview-label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--darker);
+    margin-bottom: 10px;
+}
+
+.cfg-preview-circle {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    background: var(--light-bg);
+    overflow: hidden;
+}
+
+.cfg-avatar-preview-img {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cfg-hint {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: center;
+}

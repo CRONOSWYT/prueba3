@@ -1,0 +1,540 @@
+/* ============================================
+   RECETAS BASE
+   ============================================ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Oswald", sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text);
+    max-width: 100%;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   TOGGLE DE IDIOMA (Language switch)
+   ============================================ */
+.switch-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 9999;
+}
+
+.switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 30px;
+    padding: 0;
+    user-select: none;
+}
+
+.switch input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 3;
+    cursor: pointer;
+    margin: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ffffff;
+    border: 1px solid var(--dark);
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(11, 53, 86, 0.12);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.switch:hover .slider {
+    background-color: #f0f7f7;
+    border-color: var(--teal);
+    box-shadow: 0 4px 12px rgba(11, 53, 86, 0.2);
+}
+
+.slider .text-es, .slider .text-en {
+    color: rgba(11, 53, 86, 0.35);
+    font-size: 10px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.slider .thumb {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 22px; height: 22px;
+    background-color: var(--dark);
+    border-radius: 50%;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider .thumb::after {
+    content: "ES";
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+}
+
+.switch input:checked + .slider .thumb {
+    transform: translateX(32px);
+    background-color: var(--teal);
+}
+
+.switch input:checked + .slider .thumb::after {
+    content: "EN";
+    color: #ffffff;
+}
+
+/* HEADER */
+.header {
+    background-color: var(--primary);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding: 12px 24px;
+    width: 100%;
+    box-shadow: 0 4px 16px rgba(11, 53, 86, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-circular {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.logo-circular:hover {
+    transform: scale(1.05);
+}
+
+.header h2 {
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* TABLA DE RANKING */
+.ranking-table th {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--dark);
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+}
+
+.promedio-th {
+    width: 100px;
+    text-align: center;
+}
+
+.puntos-texto {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--dark);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--darker);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: var(--dark);
+    border: 2px solid #ffffff;
+}
+
+.btn-outline:hover {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* ============================================
+   SECCIÓN DE BIENVENIDA
+   ============================================ */
+.welcome {
+    color: #ffffff;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 8px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* SECCIÓN PRINCIPAL DE RANKING */
+.ranking-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 24px; /* Fixed padding replaces 6% for large screen consistency */
+}
+
+.ranking-title {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 2.2rem;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ranking-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0 0 32px;
+    font-weight: 400;
+}
+
+/* TABLA DE RANKING */
+/* ============================================
+   TABLA DE RANKING
+   ============================================ */
+.ranking-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--card, #ffffff);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.ranking-table thead {
+    background: #ffffff;
+}
+
+.ranking-table th {
+    color: var(--dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 18px 16px;
+    text-align: left;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+}
+
+.ranking-table th.posicion-th { width: 60px; text-align: center; }
+.ranking-table th.usuario-th { width: 220px; }
+.ranking-table th.puntos-th { width: 120px; text-align: center; }
+.ranking-table th.correctas-th { width: 130px; text-align: center; }
+.ranking-table th.calificacion-th { width: 130px; text-align: center; }
+.ranking-table th.intentos-th { width: 100px; text-align: center; }
+
+.ranking-table tbody tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ranking-table tbody tr:hover {
+    background-color: rgba(27, 179, 167, 0.03);
+}
+
+.ranking-table td {
+    padding: 14px 16px;
+    color: var(--text);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+/* MEDALLAS Y BADGES */
+.medalla {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #ffffff;
+    flex-shrink: 0;
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.medalla.oro {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.medalla.plata {
+    background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+}
+
+.medalla.bronce {
+    background: linear-gradient(135deg, #f97316, #d97706);
+}
+
+.medalla.numero {
+    background: var(--teal);
+}
+
+.posicion-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #ffffff;
+    background-color: var(--text-muted, #94a3b8);
+    flex-shrink: 0;
+}
+
+/* USUARIO DESTACADO EN TABLA */
+.fila-usuario {
+    background-color: #ffffff;
+    border-left: 4px solid var(--teal);
+    box-shadow: 0 4px 16px rgba(27, 179, 167, 0.08);
+    transform: scale(1.01);
+    position: relative;
+    z-index: 10;
+}
+
+.fila-usuario:hover {
+    background-color: #ffffff;
+    box-shadow: 0 6px 20px rgba(27, 179, 167, 0.12);
+}
+
+.usuario-actual-tag {
+    background-color: var(--teal);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.nombre-usuario {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Avatar de usuario en la tabla de ranking */
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+/* Avatar del usuario logueado en el panel superior */
+.panel-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+}
+
+.puntos-valor {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.puntos-valor.cero {
+    color: var(--text-muted);
+}
+
+.sin-usuario {
+    text-align: center;
+    padding: 48px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* PANEL DEL USUARIO DE ARRIBA */
+.usuario-panel {
+    background: var(--dark);
+    border-radius: 16px;
+    padding: 22px 28px;
+    margin: 0 auto 32px;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 12px 32px rgba(11, 53, 86, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.usuario-panel:hover {
+    transform: translateY(-2px);
+}
+
+.usuario-panel .info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 auto;
+    margin-left: 12px;
+}
+
+.usuario-panel .nombre {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.usuario-panel .posicion-texto {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+}
+
+.usuario-panel.usuario-sin-puntos {
+    background: linear-gradient(135deg, var(--teal), var(--primary));
+    justify-content: flex-start;
+}
+
+/* FOOTER */
+footer {
+    padding: 2rem 1rem;
+    text-align: center;
+    background-color: #012d55;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+footer h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .ranking-container { padding: 30px 5%; }
+    .ranking-table { border-radius: 12px; font-size: 0.85rem; }
+    .ranking-table th, .ranking-table td { padding: 10px 8px; }
+    .ranking-title { font-size: 1.6rem; }
+    .usuario-panel { padding: 20px; }
+    .usuario-panel .nombre { font-size: 1.1rem; }
+    .btn { padding: 8px 14px; font-size: 13px; }
+}
+
+/* ============================================
+   RESPONSIVE: PANTALLAS GRANDES (> 1440px)
+   Mantiene el contenido proporcional y centrado
+   ============================================ */
+@media (min-width: 1440px) {
+    .header { padding: 12px 24px; }
+    .ranking-container { padding: 40px 24px; }
+}

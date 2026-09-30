@@ -1,0 +1,408 @@
+/* ============================================
+   EDITOR Y TOOLBAR
+   ============================================
+   Estilos de la barra de herramientas y botones del editor Quill.
+   Los botones se activan vía qCmd() en admins.js:
+   - #btn-bold          → qCmd('bold')        → <strong>
+   - #btn-italic        → qCmd('italic')      → <em>
+   - #btn-strike        → qCmd('strike')      → <s>
+   - #btn-code          → qCmd('code')        → <code> (código inline)
+   - #btn-image         → qCmd('image')       → <img>
+   - #btn-header1/2/3   → qCmd('header1/2/3') → <h1>, <h2>, <h3>
+   - #btn-blockquote    → qCmd('blockquote')  → <blockquote>
+   - #btn-code-block    → qCmd('code-block')  → <pre><code> (bloque de código)
+   - #btn-bullet        → qCmd('bullet')      → <ul>
+   - #btn-ordered       → qCmd('ordered')     → <ol>
+   - #btn-undo          → qCmd('undo')        → deshacer
+   - #btn-redo          → qCmd('redo')        → rehacer
+   ============================================ */
+
+.markdown-editor {
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-markdown {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: var(--light-bg, #f8fafc);
+  border: 1px solid var(--border, #dfe9e6);
+  color: var(--dark, #0b3556);
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.btn-markdown i { font-size: 13px; line-height: 1; }
+.btn-label { font-size: 10px; line-height: 1; margin-inline-start: 2px; }
+
+.btn-markdown:hover {
+  background-color: var(--teal, #1bb3a7);
+  border-color: var(--teal, #1bb3a7);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(27, 179, 167, 0.2);
+}
+
+.btn-markdown.active {
+  background-color: var(--teal, #1bb3a7);
+  border-color: var(--teal, #1bb3a7);
+  color: #ffffff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   CANVAS Y EDITOR QUILL
+   ============================================
+   El #textoPregunta.quill-canvas es el contenedor principal del editor.
+   El .ql-editor es el área editable donde Quill renderiza el contenido.
+   ============================================ */
+#textoPregunta.quill-canvas {
+  min-height: 160px;
+  width: 100%;
+  border: 1px solid var(--border, #dfe9e6);
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  overflow: auto;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+#textoPregunta.quill-canvas:focus-within {
+  border-color: var(--teal, #1bb3a7);
+  box-shadow: 0 0 0 3px rgba(27, 179, 167, 0.15);
+}
+
+/* Quill clipboard — div oculto que captura texto escrito/pasteado */
+.quill-canvas .ql-clipboard {
+  position: absolute;
+  left: -100000px;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+  overflow-y: visible;
+}
+
+.quill-canvas .ql-editor {
+  min-height: 160px;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dark, #0b3556);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.quill-canvas .ql-editor:focus { outline: none; }
+
+.quill-canvas .ql-editor.ql-blank:before {
+  content: attr(data-placeholder);
+  color: #94a3b8;
+  font-style: italic;
+  pointer-events: none;
+}
+
+/* ============================================
+   BARRA DE EDICIÓN DE IMÁGENES
+   ============================================ */
+.img-edit-bar {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-left: 6px;
+  padding: 3px 8px;
+  background-color: #ffffff;
+  border: 1px solid var(--border, #dfe9e6);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.img-edit-bar.visible { display: flex; }
+
+.img-edit-bar input[type="number"],
+.img-edit-bar select {
+  width: 76px;
+  max-width: 76px;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: var(--dark);
+  border: 1px solid var(--border, #dfe9e6);
+  border-radius: 6px;
+  background-color: var(--card, #ffffff);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.img-edit-bar input[type="number"]:focus,
+.img-edit-bar select:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.img-edit-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 24px;
+  padding: 0;
+  font-size: 12px;
+  color: #dc2626;
+  background-color: #fee2e2;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.img-edit-bar button:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* ============================================
+   ESTILOS DE TEXTO (Editor + Visor)
+   ============================================
+   Todas las etiquetas que Quill genera (<strong>, <em>, <pre>, etc.)
+   comparten el MISMO estilo tanto en el editor (.quill-canvas .ql-editor)
+   como en el visor (.smart-visor), agrupados en selectores combinados.
+   ============================================ */
+
+/* Negrita (Bold) — <strong> — Botón: #btn-bold */
+.quill-canvas .ql-editor strong,
+.smart-visor strong {
+  font-weight: 700;
+  color: var(--dark, #0b3556);
+}
+
+/* Cursiva (Italic) — <em> — Botón: #btn-italic */
+.quill-canvas .ql-editor em,
+.smart-visor em {
+  font-style: italic;
+}
+
+/* Tachado (Strikethrough) — <s> — Botón: #btn-strike */
+.quill-canvas .ql-editor s,
+.smart-visor s {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+/* Código INLINE (Inline code) — <code> — Botón: #btn-code
+   Para fragmentos cortos dentro de un párrafo */
+.quill-canvas .ql-editor code,
+.smart-visor code {
+  background-color: rgba(27, 179, 167, 0.1);
+  color: var(--dark, #0b3556);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 13px;
+}
+
+/* ============================================
+   BLOQUE DE CÓDIGO (Code Block) — <pre>
+   *** SECCIÓN CLAVE: Este estilo soluciona el problema
+   de texto largo que no se adaptaba a la página ***
+
+   white-space: pre-wrap    → El texto se envuelve (wrap) en lugar de
+                              estirarse horizontalmente sin salto
+   word-break: break-word   → Parte palabras largas que no caben
+   overflow-wrap: break-word → Fuerza el salto en palabras excesivas
+   max-width: 100%          → Nunca supera el ancho del contenedor
+   overflow-x: auto         → Scroll horizontal como respaldo
+   font-family: monospace    → Fuente de ancho fijo para código legible
+
+   Botón: #btn-code-block → qCmd('code-block') → <pre><code>
+   ============================================ */
+.quill-canvas .ql-editor pre,
+.smart-visor pre {
+  background-color: #f8fafc;
+  border: 1px solid var(--border, #dfe9e6);
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--dark, #0b3556);
+}
+
+/* Código dentro de un bloque <pre><code> — fondo transparente para no duplicar */
+.quill-canvas .ql-editor pre code,
+.smart-visor pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Listas — <ul> y <ol> */
+.quill-canvas .ql-editor ul,
+.quill-canvas .ql-editor ol,
+.smart-visor ul,
+.smart-visor ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+/* Items de lista — <li> */
+.quill-canvas .ql-editor li,
+.smart-visor li {
+  margin: 4px 0;
+}
+
+/* Enlaces — <a> */
+.quill-canvas .ql-editor a,
+.smart-visor a {
+  color: var(--teal, #1bb3a7);
+  text-decoration: underline;
+}
+
+/* Párrafos — <p> */
+.quill-canvas .ql-editor p,
+.smart-visor p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* Salto de línea — <br> se oculta en editor para evitar espacios extra */
+.quill-canvas .ql-editor br {
+  display: none;
+}
+
+/* Títulos — <h1>, <h2>, <h3> — Botones: #btn-header1, #btn-header2, #btn-header3 */
+.quill-canvas .ql-editor h1,
+.quill-canvas .ql-editor h2,
+.quill-canvas .ql-editor h3,
+.smart-visor h1,
+.smart-visor h2,
+.smart-visor h3 {
+  border-bottom: 1px solid var(--border, #dfe9e6);
+  padding-bottom: 6px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  color: var(--dark, #0b3556);
+  font-weight: 700;
+}
+
+/* Tamaños de título (shared entre editor y visor) */
+.quill-canvas .ql-editor h1,
+.smart-visor h1 { font-size: 1.55em; }  /* H1 — más grande */
+.quill-canvas .ql-editor h2,
+.smart-visor h2 { font-size: 1.35em; }  /* H2 — mediano */
+.quill-canvas .ql-editor h3,
+.smart-visor h3 { font-size: 1.15em; }  /* H3 — pequeño */
+
+/* ============================================
+   CITAS Y IMÁGENES (Editor + Visor)
+   ============================================ */
+
+/* Cita (Blockquote) — <blockquote> — Botón: #btn-blockquote
+   Editor y visor tienen colores de texto ligeramente distintos */
+.quill-canvas .ql-editor blockquote {
+  border-left: 4px solid var(--teal, #1bb3a7);
+  padding-left: 14px;
+  margin: 14px 0;
+  color: #475569;
+  font-style: italic;
+  background: #f1f5f9;
+  border-radius: 0 8px 8px 0;
+}
+
+.smart-visor blockquote {
+  border-left: 4px solid var(--teal, var(--primary, #1bb3a7));
+  padding-left: 14px;
+  margin: 12px 0;
+  color: #0d6a6a;
+  font-style: italic;
+  background: #f1f5f9;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Imágenes — <img> — Botón: #btn-image */
+.quill-canvas .ql-editor img,
+.smart-visor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px auto;
+  border-radius: 10px;
+  border: 1px solid var(--border, #dfe9e6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Imagen de ancho completo — <img class="img-full-width"> */
+.quill-canvas .ql-editor img.img-full-width,
+.smart-visor img.img-full-width {
+  float: none;
+  clear: both;
+  display: block;
+  max-width: 100%;
+  margin: 12px auto;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Mobile (< 768px) — Toolbar se apila verticalmente */
+@media (max-width: 768px) {
+  .editor-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Pantallas grandes (> 1440px) — Ancho máximo controlado */
+@media (min-width: 1440px) {
+  #textoPregunta.quill-canvas { overflow: auto; }
+  .smart-visor { max-width: 100%; }
+}
+
+/* ============================================
+   CONTENEDOR DEL VISOR (SMART VISOR)
+   ============================================
+   Muestra preguntas ya creadas en la vista de examen (preguntas.html).
+   Usa la MISMA estética que el editor (.quill-canvas).
+   ============================================ */
+.smart-visor {
+  min-height: auto;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  background-color: var(--card, #ffffff);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--dark, #0b3556);
+  font-weight: 400;
+  font-style: normal;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}

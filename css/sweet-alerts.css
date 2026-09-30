@@ -1,0 +1,72 @@
+.swal2-container {
+    z-index: 99999 !important;
+}
+
+.swal2-popup.swal-smart-popup {
+    border-radius: 12px;
+    padding: 20px 32px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.swal-smart-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #0b3556 !important;
+    margin-bottom: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.swal2-popup.swal-smart-popup .swal2-html-container {
+    font-size: 1rem;
+    color: #333333;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 12px;
+    font-family: Arial, sans-serif;
+}
+
+.swal2-popup.swal-smart-popup.swal2-success {
+    --swal2-icon-color: #28a745;
+}
+
+.swal2-popup.swal-smart-popup.swal2-success .swal2-icon .swal2-icon-mark {
+    color: #28a745;
+}
+
+.swal2-popup.swal-smart-popup.swal2-error {
+    --swal2-icon-color: #dc3545;
+}
+
+.swal2-popup.swal-smart-popup.swal2-error .swal2-icon .swal2-x-mark {
+    color: #dc3545;
+}
+
+.swal-smart-confirm {
+    background-color: #0b3556 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 8px 24px !important;
+    font-size: 0.95rem !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
+    font-family: Arial, sans-serif !important;
+}
+
+.swal-smart-confirm:hover {
+    background-color: #15466d !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.swal2-cancel {
+    background-color: #f4f7f6 !important;
+    color: #0b3556 !important;
+    border: 1px solid #0b3556 !important;
+    border-radius: 8px !important;
+}
+
+.swal2-popup.swal-smart-popup .swal2-icon {
+    margin-top: 8px;
+}

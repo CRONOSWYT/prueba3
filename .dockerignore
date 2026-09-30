@@ -1,0 +1,15 @@
+.git
+.gitignore
+node_modules
+docs
+markdown
+sql
+*.md
+.env
+.env.*
+*.log
+docker-compose*.yml
+.DS_Store
+**/test_*
+**/test*.php
+php/test_conexion.php
