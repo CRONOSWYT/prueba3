@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------------------
+# Entorno de DESARROLLO para SMART TEST.
+# Levanta dos contenedores:
+#   - db  : MySQL 8.0 con el esquema y datos de prueba.
+#   - app : PHP 8.2 + Apache que sirve la aplicación (build .devcontainer/Dockerfile).
+#
+# El código fuente se monta en caliente en /var/www/html (gracias a VS Code)
+# por lo que los cambios se reflejan al instante sin reconstruir la imagen.
+# ---------------------------------------------------------------------------
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: devroot
+      MYSQL_DATABASE: smart_test
+      MYSQL_USER: smart
+      MYSQL_PASSWORD: devpass
+    # Se publica 3306 en la VM del codespace para poder conectar un gestor
+    # de base de datos local (TablePlus / DBeaver / Workbench / CLI).
+    # En Codespaces aparecerá en la vista de Puertos y debe marcarse como
+    # "Privada" para que solo tú accedas a la base de datos.
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      timeout: 10s
+      retries: 20
+      start_period: 10s
+    command: --default-authentication-plugin=mysql_native_password
+    # Los scripts en mysql-init/ se ejecutan la 1.ª vez que arranca MySQL.
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d:ro
+
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    # Apache permanece en primer plano para que el contenedor no termine.
+    command: apache2-foreground
+    # Variables de conexión hacia MySQL (consumidas por php/conexion.php).
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: smart_test
+      DB_USER: smart
+      DB_PASSWORD: devpass
+      DB_SSL: "false"
+    # Reinicia el contenedor si Apache muere.
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

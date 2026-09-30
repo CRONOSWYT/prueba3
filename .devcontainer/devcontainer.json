@@ -1,0 +1,26 @@
+{
+  "name": "Smart Test (PHP + MySQL)",
+  "dockerComposeFile": [".devcontainer/docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "shutdownAction": "none",
+  "overrideCommand": false,
+  "forwardPorts": [80],
+  "postCreateCommand": "mkdir -p /var/www/html/img/img && chmod -R 777 /var/www/html/img/img && php -v && echo 'Entorno listo'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-language-pack-es",
+        "bmewburn.vscode-intelephense-client",
+        "redhat.vscode-yaml",
+        "bradlc.better-tailwindcss"
+      ]
+    }
+  },
+  "settings": {
+    "editor.smoothScrolling": true,
+    "files.associations": {
+      "*.php": "php"
+    }
+  }
+}
